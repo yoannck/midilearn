@@ -1,0 +1,14 @@
+{
+  "name": "midilearn",
+  "description": "Midi Learn JS",
+  "version": "1.0.0",
+  "author": "Yoann Chane Kive <yoannck@gmail.com>",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "webmidi": "^2.0.0-rc.5"
+  },
+  "devDependencies": {}
+}

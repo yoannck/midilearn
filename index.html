@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MIDI LEARN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body >
+    <h1>LAUNCHPAD - MIDI LEARN</h1>
+
+    <div id="app-widget">
+
+      <select v-model="selectedInput" v-on:change="selectInput">
+        <option disabled value="">Please select one input</option>
+        <option v-for="(input, index) in inputs" :value="index">{{ input.name }}</option>
+      </select>
+
+      <div class="pad">
+        <div class="box" :id="setId(pad.key)" :data-code="pad.key" v-on:click="play(index)" v-for="(pad, index) in pads">
+          {{pad.letter}}
+          <button class="bind" v-on:click="bind(index)">BIND</button>
+        </div>
+        <input id="padKeyvolume" type="range" min="0" max="100" :value="volume.value" />
+        <button v-on:click="bindVolume">BIND</button>
+      </div>
+
+      <div v-if="bindMode && padInput">
+        <h2>Bind Mode</h2>
+        <h3>{{ padInput.letter }} : {{ midiInput }} </h3>
+        <button type="button" class="btn btn-primary" v-on:click="validate">Bind</button>
+      </div>
+
+    </div>
+
+  </body>
+</html>
+<script src="https://unpkg.com/vue@2.2.4"></script>
+<script src="node_modules/webmidi/webmidi.min.js"></script>
+<script src="app.js"></script>
